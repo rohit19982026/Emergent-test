@@ -21,7 +21,7 @@ export default function Nav() {
           ))}
         </nav>
         <Button href="#contact" variant="secondary" size="sm">
-          Book a call
+          Email us
         </Button>
       </div>
     </header>

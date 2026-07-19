@@ -19,7 +19,7 @@ export const hero = {
   headline: "A creative agency and AI studio, fused into one team.",
   subhead:
     "We produce the marketing content, video, and design that gets you noticed — and build the AI agents and automations that get work done behind the scenes.",
-  primaryCta: { label: "Book a call", href: `mailto:${brand.email}` },
+  primaryCta: { label: "Email us", href: `mailto:${brand.email}` },
   secondaryCta: { label: "See what we do", href: "#services" },
 };
 
