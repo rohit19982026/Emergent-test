@@ -1,4 +1,8 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { whyUs } from "@/lib/content";
+import { easing, stagger } from "@/lib/motionTokens";
 
 export default function WhyUs() {
   return (
@@ -15,11 +19,18 @@ export default function WhyUs() {
             </p>
           </div>
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
-            {whyUs.map((item) => (
-              <div key={item.title} className="border-t border-border pt-5">
+            {whyUs.map((item, i) => (
+              <motion.div
+                key={item.title}
+                className="border-t border-border pt-5"
+                initial={{ y: 24, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ duration: 0.5, ease: easing.framer, delay: i * stagger.tight }}
+              >
                 <h3 className="text-sm font-semibold">{item.title}</h3>
                 <p className="mt-2 text-sm text-muted">{item.description}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

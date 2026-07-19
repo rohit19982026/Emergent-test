@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { brand, nav } from "@/lib/content";
+import Button from "./ui/Button";
 
 export default function Nav() {
   return (
@@ -19,12 +20,9 @@ export default function Nav() {
             </a>
           ))}
         </nav>
-        <a
-          href="#contact"
-          className="rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium transition-colors hover:border-accent hover:text-accent"
-        >
+        <Button href="#contact" variant="secondary" size="sm">
           Book a call
-        </a>
+        </Button>
       </div>
     </header>
   );

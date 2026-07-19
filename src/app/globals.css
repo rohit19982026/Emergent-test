@@ -1,13 +1,31 @@
 @import "tailwindcss";
 
 :root {
-  --background: #08090b;
-  --foreground: #f2f3f5;
-  --muted: #9a9ea8;
-  --surface: #101216;
-  --border: #22252b;
-  --accent: #7c8cff;
-  --accent-2: #5eead4;
+  /* Light, editorial base */
+  --background: #faf9f6;
+  --foreground: #0f0f12;
+  --muted: #6b6d73;
+  --surface: #ffffff;
+  --border: #e6e4de;
+
+  /* Two bold, deliberate accents tied to the two service pillars.
+     Darkened from the vibrant particle-field coral (#ff5a3c, used only in
+     the WebGL scene) so text/icons/button fills meet WCAG AA (4.5:1) against
+     the light background — the vibrant tone reads fine for large-area
+     decoration but fails contrast as text or UI-component color. */
+  --coral: #bf432d;
+  --cobalt: #2f5cff;
+  --accent-current: var(--coral);
+
+  /* Shape */
+  --radius-card: 14px;
+  --radius-pill: 999px;
+
+  /* Motion (mirrors src/lib/motionTokens.ts) */
+  --ease-signature: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-micro: 250ms;
+  --duration-base: 400ms;
+  --duration-reveal: 700ms;
 }
 
 @theme inline {
@@ -16,10 +34,13 @@
   --color-muted: var(--muted);
   --color-surface: var(--surface);
   --color-border: var(--border);
-  --color-accent: var(--accent);
-  --color-accent-2: var(--accent-2);
+  --color-coral: var(--coral);
+  --color-cobalt: var(--cobalt);
+  --color-accent: var(--accent-current);
+  --color-accent-2: var(--cobalt);
   --font-sans: var(--font-inter);
-  --font-display: var(--font-space-grotesk);
+  --font-display: var(--font-bricolage);
+  --font-mono: var(--font-dm-mono);
 }
 
 * {
@@ -29,6 +50,33 @@
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+@keyframes mesh-drift-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(60px, 40px) scale(1.15); }
+}
+
+@keyframes mesh-drift-b {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-50px, -30px) scale(1.1); }
+}
+
+.animate-mesh-drift-a {
+  animation: mesh-drift-a 28s ease-in-out infinite;
+}
+
+.animate-mesh-drift-b {
+  animation: mesh-drift-b 34s ease-in-out infinite;
+}
+
+@keyframes grain-flicker {
+  0%, 100% { opacity: 0.05; }
+  50% { opacity: 0.035; }
+}
+
+.grain-flicker {
+  animation: grain-flicker 380ms steps(2, jump-none) infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

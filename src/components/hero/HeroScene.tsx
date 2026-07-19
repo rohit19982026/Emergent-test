@@ -9,10 +9,12 @@ const Scene3D = dynamic(() => import("./Scene3D"), {
 });
 
 function SceneFallback() {
+  // Matches the particle field's resting look — a soft coral haze — so the
+  // loading state doesn't jar against what mounts a moment later.
   return (
     <div
       aria-hidden
-      className="h-full w-full animate-pulse rounded-full bg-gradient-to-br from-accent/30 to-accent-2/20 blur-2xl"
+      className="h-full w-full animate-pulse rounded-full bg-gradient-to-br from-coral/20 to-coral/5 blur-2xl"
     />
   );
 }
