@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { easing, duration } from "@/lib/motionTokens";
 
 // Small custom cursor dot that follows the pointer and grows over
 // interactive elements. Hidden entirely on touch devices and under
@@ -15,8 +16,12 @@ export default function MagneticCursor() {
     if (isTouch || reduced || !dotRef.current) return;
 
     const dot = dotRef.current;
-    const quickX = gsap.quickTo(dot, "x", { duration: 0.4, ease: "power3.out" });
-    const quickY = gsap.quickTo(dot, "y", { duration: 0.4, ease: "power3.out" });
+    // Continuous per-frame cursor tracking is a different animation class
+    // than a discrete state transition (hover/press) — it needs a snappier,
+    // more responsive curve than the shared signature ease, or it reads as
+    // laggy rather than glued to the pointer. Intentional exception.
+    const quickX = gsap.quickTo(dot, "x", { duration: duration.base, ease: "power3.out" });
+    const quickY = gsap.quickTo(dot, "y", { duration: duration.base, ease: "power3.out" });
 
     const onMove = (e: MouseEvent) => {
       quickX(e.clientX);
@@ -26,12 +31,12 @@ export default function MagneticCursor() {
     const interactiveSelector = "a, button, [data-cursor-hover]";
     const onOver = (e: MouseEvent) => {
       if ((e.target as Element)?.closest?.(interactiveSelector)) {
-        gsap.to(dot, { scale: 2.5, duration: 0.3, ease: "power2.out" });
+        gsap.to(dot, { scale: 2.5, duration: duration.micro, ease: easing.gsap });
       }
     };
     const onOut = (e: MouseEvent) => {
       if ((e.target as Element)?.closest?.(interactiveSelector)) {
-        gsap.to(dot, { scale: 1, duration: 0.3, ease: "power2.out" });
+        gsap.to(dot, { scale: 1, duration: duration.micro, ease: easing.gsap });
       }
     };
 

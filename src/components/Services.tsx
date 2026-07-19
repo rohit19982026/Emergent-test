@@ -42,7 +42,7 @@ export default function Services() {
           <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
             Two disciplines. One team.
           </h2>
-          <p className="mt-4 text-muted">
+          <p className="mx-auto mt-4 max-w-lg text-muted">
             We pair creative production with AI and automation engineering, so the story you tell
             and the systems behind it are built by people who talk to each other every day.
           </p>
@@ -69,7 +69,7 @@ export default function Services() {
                   style={{ borderColor: accent }}
                 />
 
-                <div className="mb-3 flex items-center gap-3">
+                <div className="mb-4 flex items-center gap-2">
                   <ServiceLoopIcon variant={pillar.id === "creative" ? "creative" : "ai"} />
                   <span
                     className="font-mono text-xs font-medium uppercase tracking-wider"
@@ -87,8 +87,8 @@ export default function Services() {
                     return (
                       <div key={service.title}>
                         <Icon className="h-5 w-5" style={{ color: accent }} strokeWidth={1.75} />
-                        <h4 className="mt-3 text-sm font-semibold">{service.title}</h4>
-                        <p className="mt-1.5 text-sm text-muted">{service.description}</p>
+                        <h4 className="mt-4 text-sm font-semibold">{service.title}</h4>
+                        <p className="mt-2 text-sm text-muted">{service.description}</p>
                       </div>
                     );
                   })}

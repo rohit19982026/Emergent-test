@@ -13,7 +13,7 @@ export default function Process() {
           <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
             How we work
           </h2>
-          <p className="mt-4 text-muted">
+          <p className="mx-auto mt-4 max-w-lg text-muted">
             A simple, repeatable process that keeps creative and automation moving together.
           </p>
         </div>

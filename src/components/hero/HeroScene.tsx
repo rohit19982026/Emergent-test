@@ -21,7 +21,11 @@ function SceneFallback() {
 
 export default function HeroScene() {
   return (
-    <div className="relative h-full w-full">
+    // Fades in ~500ms after mount, after the headline's SplitText reveal
+    // has already started — motion draws the eye before static text does,
+    // so the particle field enters second, letting the headline win the
+    // first read instead of competing with it from frame one.
+    <div className="relative h-full w-full hero-scene-in">
       <Suspense fallback={<SceneFallback />}>
         <Scene3D />
       </Suspense>

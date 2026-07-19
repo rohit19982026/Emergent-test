@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import gsap from "gsap";
+import { easing, duration } from "@/lib/motionTokens";
 
 type ButtonProps = {
   href: string;
@@ -20,8 +21,11 @@ export default function Button({
   className = "",
 }: ButtonProps) {
   const btnRef = useRef<HTMLAnchorElement>(null);
-  const iconRef = useRef<SVGSVGElement>(null);
 
+  // Pull-toward-cursor and release both run on the shared signature ease —
+  // previously the release used an elastic/springy curve while the pull
+  // used a plain power curve, two different physical metaphors in one
+  // interaction. Same ease both directions now.
   const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced || !btnRef.current) return;
@@ -31,28 +35,22 @@ export default function Button({
     gsap.to(btnRef.current, {
       x: relX * 0.25,
       y: relY * 0.4,
-      duration: 0.4,
-      ease: "power3.out",
+      duration: duration.base,
+      ease: easing.gsap,
     });
-    if (iconRef.current) {
-      gsap.to(iconRef.current, { x: 4, duration: 0.3, ease: "power2.out" });
-    }
   };
 
   const handleMouseLeave = () => {
     if (!btnRef.current) return;
-    gsap.to(btnRef.current, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1, 0.5)" });
-    if (iconRef.current) {
-      gsap.to(iconRef.current, { x: 0, duration: 0.3, ease: "power2.out" });
-    }
+    gsap.to(btnRef.current, { x: 0, y: 0, duration: duration.base, ease: easing.gsap });
   };
 
   const handleMouseDown = () => {
-    gsap.to(btnRef.current, { scale: 0.97, duration: 0.15, ease: "power2.out" });
+    gsap.to(btnRef.current, { scale: 0.97, duration: duration.micro, ease: easing.gsap });
   };
 
   const handleMouseUp = () => {
-    gsap.to(btnRef.current, { scale: 1, duration: 0.2, ease: "power2.out" });
+    gsap.to(btnRef.current, { scale: 1, duration: duration.micro, ease: easing.gsap });
   };
 
   const base =
@@ -83,7 +81,7 @@ export default function Button({
       <span className="relative z-10 transition-colors duration-[var(--duration-base)] group-hover:text-background">
         {children}
       </span>
-      <ArrowRight ref={iconRef} className="relative z-10 h-4 w-4 group-hover:text-background" strokeWidth={2} />
+      <ArrowRight className="relative z-10 h-4 w-4 transition-colors duration-[var(--duration-base)] group-hover:text-background" strokeWidth={2} />
     </a>
   );
 }

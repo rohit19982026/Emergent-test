@@ -9,7 +9,10 @@ export default function Hero() {
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-surface via-background to-background" />
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-6 py-20 md:grid-cols-2 md:py-32">
         <div>
-          <p className="mb-5 inline-flex items-center rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-muted">
+          {/* Badge padding (px-3 py-1) intentionally stays off the macro 8px
+              grid — compact chips/badges read better on a finer 4px
+              increment than the block-level rhythm rule is meant for. */}
+          <p className="mb-6 inline-flex items-center rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-muted">
             {hero.eyebrow}
           </p>
           <AnimatedHeadline

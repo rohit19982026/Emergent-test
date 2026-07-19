@@ -22,7 +22,7 @@ export default function WhyUs() {
             {whyUs.map((item, i) => (
               <motion.div
                 key={item.title}
-                className="border-t border-border pt-5"
+                className="border-t border-border pt-6"
                 initial={{ y: 24, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true, amount: 0.4 }}
