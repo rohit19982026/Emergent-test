@@ -9,6 +9,7 @@ export const brand = {
 
 export const nav = [
   { label: "Services", href: "#services" },
+  { label: "Work", href: "#work" },
   { label: "Process", href: "#process" },
   { label: "Why Us", href: "#why-us" },
   { label: "Contact", href: "#contact" },
