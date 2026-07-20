@@ -7,7 +7,7 @@ export default function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-surface via-background to-background" />
-      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-6 py-20 md:grid-cols-2 md:py-32">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-8 px-6 py-12 sm:gap-12 sm:py-20 md:grid-cols-2 md:py-32">
         <div>
           {/* Badge padding (px-3 py-1) intentionally stays off the macro 8px
               grid — compact chips/badges read better on a finer 4px

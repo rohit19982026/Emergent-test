@@ -56,7 +56,7 @@ export default function Button({
   const base =
     "group relative inline-flex items-center gap-2 overflow-hidden rounded-full font-semibold transition-colors duration-[var(--duration-base)] ease-[var(--ease-signature)]";
 
-  const sizeClasses = size === "sm" ? "px-4 py-2 text-sm" : "px-6 py-3 text-sm";
+  const sizeClasses = size === "sm" ? "px-4 py-2.5 text-sm" : "px-6 py-3 text-sm";
 
   const variantClasses =
     variant === "primary"
