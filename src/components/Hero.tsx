@@ -17,38 +17,49 @@ import StatCounter from "./ui/StatCounter";
 export default function Hero() {
   return (
     <section id="top" className="relative flex min-h-[100svh] items-center overflow-hidden bg-blue">
-      <motion.div
-        aria-hidden
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: duration.slow, ease: easing.framer }}
-        className="absolute inset-0 scale-[1.18]"
-      >
-        <video
-          src="/photos/hero-camera.mp4"
-          poster="/photos/hero-camera-poster.jpg"
-          className="h-full w-full object-cover object-[75%_50%] motion-reduce:hidden"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-        />
-        {/* Reduced motion: hold the assembled-camera still instead of playing */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/photos/hero-camera-poster.jpg"
-          alt=""
-          className="hidden h-full w-full object-cover object-[75%_50%] motion-reduce:block"
-        />
-      </motion.div>
-
-      {/* Same-hue scrim: exact --blue with falling alpha, so the type zone
-          calms down without ever reading as an overlay shape. Vertical on
-          mobile (text stacks top-to-bottom), horizontal on desktop. */}
+      {/* The source's usable region (bars cropped) is exactly 3:2, so an
+          aspect-[3/2] wrapper + object-cover shows ~the whole camera and
+          exploded spread at natural size. Mobile: full-width band anchored
+          to the section bottom, text stays above on clean blue. Desktop:
+          center-right at 62% width; the left edge feather-fades parts into
+          the identical blue instead of slicing them at an invisible line. */}
       <div
         aria-hidden
-        className="absolute inset-0 bg-[linear-gradient(180deg,rgba(13,34,238,0.65)_0%,rgba(13,34,238,0.2)_55%,rgba(13,34,238,0.45)_100%)] lg:bg-[linear-gradient(90deg,rgba(13,34,238,0.85)_0%,rgba(13,34,238,0.35)_40%,rgba(13,34,238,0)_65%)]"
+        className="absolute inset-x-0 bottom-0 aspect-[3/2] overflow-hidden lg:inset-x-auto lg:bottom-auto lg:right-0 lg:top-1/2 lg:w-[62%] lg:max-w-[1000px] lg:-translate-y-1/2 lg:[mask-image:linear-gradient(to_right,transparent,black_10%)]"
+      >
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: duration.slow, ease: easing.framer }}
+          className="h-full w-full"
+        >
+          <video
+            src="/photos/hero-camera.mp4"
+            poster="/photos/hero-camera-poster.jpg"
+            className="h-full w-full scale-[1.03] object-cover motion-reduce:hidden"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+          />
+          {/* Reduced motion: hold the assembled-camera still instead of playing */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/photos/hero-camera-poster.jpg"
+            alt=""
+            className="hidden h-full w-full scale-[1.03] object-cover motion-reduce:block"
+          />
+        </motion.div>
+      </div>
+
+      {/* Same-hue scrim: exact --blue with falling alpha, so overlap zones
+          calm down without the gradient ever reading as an overlay shape.
+          Mobile only needs the lower band (CTAs/stats sit over the camera);
+          desktop only the left text column. */}
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-[linear-gradient(180deg,rgba(13,34,238,0)_55%,rgba(13,34,238,0.35)_100%)] lg:bg-[linear-gradient(90deg,rgba(13,34,238,0.7)_0%,rgba(13,34,238,0.25)_45%,rgba(13,34,238,0)_62%)]"
       />
 
       <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 gap-10 px-6 pb-16 pt-12 lg:grid-cols-[auto_1fr] lg:gap-12 lg:pb-24 lg:pt-20">
@@ -71,7 +82,9 @@ export default function Hero() {
             {hero.eyebrow}
           </motion.p>
 
-          <h1 className="font-display uppercase leading-[0.9] tracking-tight text-[clamp(4rem,13vw,10.5rem)]">
+          {/* Deep-blue glow separates the outline word from any texture
+              behind it while staying invisible as an effect (same hue). */}
+          <h1 className="font-display uppercase leading-[0.9] tracking-tight text-[clamp(4rem,13vw,10.5rem)] [filter:drop-shadow(0_6px_24px_rgba(3,10,90,0.5))]">
             {/* Lines enter from opposite sides — the reference's collage energy */}
             <motion.span
               initial={{ opacity: 0, x: -80 }}
