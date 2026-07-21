@@ -17,14 +17,9 @@ export type PhotoSlot = {
   placeholderLabel: string;
 };
 
-export const photos: Record<"hero" | "about" | "contact", PhotoSlot> = {
-  hero: {
-    src: "/photos/hero-loop.mp4",
-    alt: "Looping 3D render of the Vertex star monolith with orbiting stars and a play button",
-    type: "video",
-    treatment: "raw",
-    placeholderLabel: "Showreel coming soon",
-  },
+// The hero doesn't use a slot: its camera showreel is a full-bleed
+// background layer owned by Hero.tsx, not a placed media panel.
+export const photos: Record<"about" | "contact", PhotoSlot> = {
   about: {
     src: null,
     alt: "Behind the scenes at Vertex Studio",
