@@ -8,15 +8,17 @@ export const easing = {
   framer: [0.16, 1, 0.3, 1] as const,
 };
 
+// Snappier scale than the old editorial theme — this design language is
+// punchy, so reveals land fast and hard rather than drifting in.
 export const duration = {
-  micro: 0.25,
-  base: 0.4,
-  reveal: 0.7,
-  slow: 0.9,
+  micro: 0.2,
+  base: 0.35,
+  reveal: 0.5,
+  slow: 0.7,
 };
 
 export const stagger = {
-  tight: 0.04,
-  base: 0.08,
-  loose: 0.12,
+  tight: 0.03,
+  base: 0.06,
+  loose: 0.1,
 };

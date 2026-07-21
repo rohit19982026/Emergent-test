@@ -4,7 +4,9 @@ import { useRef } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { work } from "@/lib/portfolio";
+import { workSection } from "@/lib/content";
 import { easing, duration } from "@/lib/motionTokens";
+import SectionHeading from "./ui/SectionHeading";
 
 const aspectClass: Record<string, string> = {
   "16/9": "aspect-video",
@@ -25,34 +27,30 @@ export default function Portfolio() {
   };
 
   return (
-    <section id="work" className="border-t border-border/60 py-24">
-      <div className="mx-auto max-w-6xl px-6">
+    <section id="work" className="overflow-hidden bg-blue py-20 sm:py-28">
+      <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-wrap items-end justify-between gap-6">
-          <div className="max-w-lg">
-            <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
-              Selected work
-            </h2>
-            <p className="mt-4 text-muted">
-              A sample of what we&apos;ve shipped — more added as projects wrap.
-            </p>
+          <div>
+            <SectionHeading eyebrow={workSection.eyebrow} segments={workSection.headline} />
+            <p className="mt-5 max-w-md text-white/85">{workSection.description}</p>
           </div>
           {work.length > 1 && (
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               <button
                 type="button"
                 aria-label="Previous work"
                 onClick={() => scrollByCard(-1)}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:border-accent hover:text-accent"
+                className="inline-flex h-12 w-12 items-center justify-center rounded-full border-2 border-white text-white transition-colors hover:bg-lime hover:border-lime hover:text-ink"
               >
-                <ArrowLeft className="h-4 w-4" />
+                <ArrowLeft className="h-5 w-5" />
               </button>
               <button
                 type="button"
                 aria-label="Next work"
                 onClick={() => scrollByCard(1)}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:border-accent hover:text-accent"
+                className="inline-flex h-12 w-12 items-center justify-center rounded-full border-2 border-white text-white transition-colors hover:bg-lime hover:border-lime hover:text-ink"
               >
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="h-5 w-5" />
               </button>
             </div>
           )}
@@ -61,32 +59,27 @@ export default function Portfolio() {
 
       <div
         ref={trackRef}
-        className="no-scrollbar mt-12 flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 pb-4 sm:px-[max(1.5rem,calc((100vw-72rem)/2+1.5rem))]"
+        className="no-scrollbar mt-12 flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 pb-6 sm:px-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))]"
       >
         {work.map((item, i) => (
           <motion.div
             key={item.id}
             data-work-card
             className="relative shrink-0 snap-start"
-            style={{ width: "min(85vw, 480px)" }}
+            style={{ width: "min(85vw, 560px)" }}
             initial={{ opacity: 0, x: 60 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: duration.slow, ease: easing.framer, delay: i * 0.08 }}
           >
-            {/* Stacked-card effect: a second card peeking out behind the
-                real one, so a single piece still reads as part of a deck
-                rather than a lone tile. */}
-            <div
-              aria-hidden
-              className="absolute inset-0 translate-x-2 translate-y-2 rounded-[var(--radius-card)] border border-border bg-surface"
-            />
-            <div className="relative overflow-hidden rounded-[var(--radius-card)] border border-border bg-surface">
-              <div className={`relative w-full overflow-hidden bg-foreground/5 ${aspectClass[item.aspect]}`}>
+            {/* Hard lime offset shadow — the reference's punchy card treatment */}
+            <div aria-hidden className="absolute inset-0 translate-x-2.5 translate-y-2.5 bg-lime" />
+            <div className="group relative overflow-hidden border-2 border-ink bg-ink">
+              <div className={`relative w-full overflow-hidden bg-white/5 ${aspectClass[item.aspect]}`}>
                 {item.type === "video" ? (
                   <video
                     src={item.src}
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-cover transition-transform duration-[var(--duration-reveal)] ease-[var(--ease-signature)] group-hover:scale-105"
                     autoPlay
                     muted
                     loop
@@ -95,15 +88,21 @@ export default function Portfolio() {
                   />
                 ) : (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={item.src} alt={item.title} className="h-full w-full object-cover" />
+                  <img
+                    src={item.src}
+                    alt={item.title}
+                    className="h-full w-full object-cover transition-transform duration-[var(--duration-reveal)] ease-[var(--ease-signature)] group-hover:scale-105"
+                  />
                 )}
               </div>
-              <div className="p-6">
-                <span className="font-mono text-xs font-medium uppercase tracking-wider text-accent">
-                  {item.category}
-                </span>
-                <h3 className="mt-2 font-display text-lg font-semibold">{item.title}</h3>
-                <p className="mt-1 text-sm text-muted">{item.description}</p>
+              <div className="flex items-start justify-between gap-4 p-6">
+                <div>
+                  <span className="inline-block bg-lime px-3 py-1 font-grotesk text-xs font-bold uppercase tracking-[0.15em] text-ink">
+                    {item.category}
+                  </span>
+                  <h3 className="mt-3 font-display text-2xl uppercase text-white">{item.title}</h3>
+                  <p className="mt-1 text-sm text-white/65">{item.description}</p>
+                </div>
               </div>
             </div>
           </motion.div>

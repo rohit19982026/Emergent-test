@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Bricolage_Grotesque, DM_Mono } from "next/font/google";
+import { Inter, Anton, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { brand } from "@/lib/content";
 import SmoothScrollProvider from "@/components/scroll/SmoothScrollProvider";
@@ -11,21 +11,22 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-const bricolage = Bricolage_Grotesque({
-  variable: "--font-bricolage",
+// Ultra-heavy condensed display face — the all-caps headline voice of the site.
+const anton = Anton({
+  variable: "--font-anton",
   subsets: ["latin"],
+  weight: "400",
 });
 
-const dmMono = DM_Mono({
-  variable: "--font-dm-mono",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
-  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
   title: `${brand.fullName} — ${brand.tagline}`,
   description:
-    "Creative agency and AI automation studio serving the US and Europe: marketing content, video, design, AI agents, and workflow automation.",
+    "Video editing and graphics agency: short-form and long-form edits, motion graphics, thumbnails, and brand design — with AI automation on the side.",
 };
 
 export default function RootLayout({
@@ -36,7 +37,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${bricolage.variable} ${dmMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${anton.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans bg-background text-foreground">
         <SmoothScrollProvider>{children}</SmoothScrollProvider>

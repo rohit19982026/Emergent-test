@@ -1,24 +1,29 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
+import Marquee from "@/components/ui/Marquee";
 import Services from "@/components/Services";
+import About from "@/components/About";
+import Statement from "@/components/Statement";
 import Portfolio from "@/components/Portfolio";
 import Process from "@/components/Process";
-import WhyUs from "@/components/WhyUs";
+import StatsBand from "@/components/StatsBand";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import ScrollChoreographer from "@/components/scroll/ScrollChoreographer";
+import { marqueeItems } from "@/lib/content";
 
 export default function Home() {
   return (
     <>
-      <ScrollChoreographer />
       <Nav />
-      <main className="flex-1">
+      <main className="flex-1 overflow-x-clip">
         <Hero />
+        <Marquee items={marqueeItems} tilt />
         <Services />
+        <About />
+        <Statement />
         <Portfolio />
         <Process />
-        <WhyUs />
+        <StatsBand />
         <Contact />
       </main>
       <Footer />

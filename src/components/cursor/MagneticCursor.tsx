@@ -57,7 +57,7 @@ export default function MagneticCursor() {
       ref={dotRef}
       aria-hidden
       className="pointer-events-none fixed left-0 top-0 z-[70] h-2.5 w-2.5 rounded-full mix-blend-difference hidden md:block"
-      style={{ backgroundColor: "#ffffff" }}
+      style={{ backgroundColor: "var(--lime)" }}
     />
   );
 }
