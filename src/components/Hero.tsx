@@ -1,11 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { hero, stats } from "@/lib/content";
+import { hero, heroServices } from "@/lib/content";
 import { easing, duration } from "@/lib/motionTokens";
 import Button from "./ui/Button";
 import Star from "./ui/Star";
-import StatCounter from "./ui/StatCounter";
 
 // The camera showreel is the hero's background, not a placed media panel:
 // it fills the whole section behind the type, so its only edges are the
@@ -63,12 +62,19 @@ export default function Hero() {
       />
 
       <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 gap-10 px-6 pb-16 pt-12 lg:grid-cols-[auto_1fr] lg:gap-12 lg:pb-24 lg:pt-20">
-        {/* Stats rail — vertical on desktop, horizontal row on mobile (bottom) */}
-        <div className="order-3 grid grid-cols-3 gap-6 border-t-2 border-white/20 pt-8 lg:order-1 lg:grid-cols-1 lg:content-start lg:gap-10 lg:border-r-2 lg:border-t-0 lg:pr-10 lg:pt-2">
-          {stats.map((s) => (
-            <StatCounter key={s.label} {...s} />
+        {/* Service index — the whole offer at a glance. 2×2 on mobile
+            (bottom), vertical rail on desktop (left). Numbers deliberately
+            live only in the bottom StatsBand, not here. */}
+        <ul className="order-3 grid grid-cols-2 gap-x-6 gap-y-4 border-t-2 border-white/20 pt-8 lg:order-1 lg:grid-cols-1 lg:content-start lg:gap-5 lg:border-r-2 lg:border-t-0 lg:pr-10 lg:pt-2">
+          {heroServices.map((label) => (
+            <li key={label} className="flex items-start gap-2.5">
+              <Star className="mt-1 h-3.5 w-3.5 shrink-0 text-lime" />
+              <span className="font-grotesk text-sm font-bold uppercase leading-tight tracking-[0.08em] text-white/90 lg:text-base">
+                {label}
+              </span>
+            </li>
           ))}
-        </div>
+        </ul>
 
         {/* Headline block — type sits over the drifting camera parts */}
         <div className="order-1 lg:order-2">

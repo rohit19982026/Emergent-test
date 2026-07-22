@@ -2,7 +2,7 @@
 export const brand = {
   name: "Vertex",
   fullName: "Vertex Studio",
-  tagline: "Video editing & graphics agency",
+  tagline: "Creative studio for video, design, web & AI",
   email: "hello@vertexstudio.co",
   regions: "US & Europe",
 };
@@ -23,16 +23,26 @@ export type HeadlineSegment = {
 };
 
 export const hero = {
-  eyebrow: `The video & graphics team behind brands in the ${brand.regions}`,
+  eyebrow: `The creative team behind growing brands in the ${brand.regions}`,
   headline: [
-    { text: "VIDEO", style: "fill" },
-    { text: "AGENCY", style: "outline" },
+    { text: "CREATIVE", style: "fill" },
+    { text: "STUDIO", style: "outline" },
   ] as HeadlineSegment[],
   subhead:
-    "Edits, motion graphics & design that stop the scroll — for creators and brands that need to show up every single day.",
+    "Scroll-stopping edits, motion design & brand graphics — backed by the websites and AI systems that turn your content into a growth engine.",
   primaryCta: { label: "See our work", href: "#work" },
   secondaryCta: { label: "Email us", href: `mailto:${brand.email}` },
 };
+
+// Hero left rail: the whole offer at a glance, so a cold visitor knows
+// every service line within seconds of landing. Numbers live only in the
+// bottom StatsBand.
+export const heroServices = [
+  "Video Editing & Motion",
+  "Logos, Posters & Brand",
+  "Websites & Apps",
+  "AI Agents & Automation",
+];
 
 // CONFIRM BEFORE LAUNCH — these numbers are conservative drafts, not
 // verified figures. Correct them here (one line each) before promoting
@@ -46,17 +56,18 @@ export const stats = [
 export const marqueeItems = [
   "Video Editing",
   "Motion Graphics",
-  "Graphic Design",
-  "Color Grading",
+  "Logo & Brand Design",
+  "Poster & Ad Creative",
   "Short-Form Content",
-  "Thumbnails",
-  "AI Automation",
+  "Web Design & Dev",
+  "AI Agents",
+  "Workflow Automation",
 ];
 
 export type Service = {
   title: string;
   description: string;
-  icon: "Film" | "Clapperboard" | "Palette" | "Image" | "Smartphone" | "Bot";
+  icon: "Film" | "Clapperboard" | "Palette" | "Smartphone" | "Globe" | "Bot";
   featured?: boolean;
 };
 
@@ -64,41 +75,73 @@ export const services: Service[] = [
   {
     title: "Motion Graphics",
     description:
-      "Animated titles, lower thirds, explainers, and brand animations that give static content a pulse.",
+      "Animated titles, explainers, logo stings, and brand animations that give static content a pulse.",
     icon: "Clapperboard",
   },
   {
     title: "Video Editing",
     description:
-      "Long-form and short-form edits — YouTube, ads, product films, and everything in between, cut to hold attention.",
+      "Long-form and short-form edits — YouTube, ads, product films — cut to hold attention and match how each platform is watched.",
     icon: "Film",
     featured: true,
   },
   {
-    title: "Graphic Design",
+    title: "Graphic & Brand Design",
     description:
-      "Brand identity, social templates, and ad creative built as systems that stay consistent at scale.",
+      "Logos, posters, thumbnails, ad creative, and full identity systems — designed once, consistent everywhere.",
     icon: "Palette",
   },
   {
-    title: "Thumbnails & Packaging",
+    title: "Short-Form & Social",
     description:
-      "Click-worthy thumbnails, titles, and channel art engineered around what actually gets clicked.",
-    icon: "Image",
-  },
-  {
-    title: "Short-Form & Social Cuts",
-    description:
-      "Reels, Shorts, and TikToks repurposed from your long-form — platform-native pacing, captions, and hooks.",
+      "Reels, Shorts, and TikToks repurposed from your long-form — native pacing, captions, hooks, and packaging.",
     icon: "Smartphone",
   },
   {
-    title: "AI & Automation",
+    title: "Websites & Apps",
     description:
-      "On the side: AI agents and workflow automation that take repetitive production work off your plate.",
+      "Design and development of fast, modern sites and apps — from landing page to full product, by the team that already knows your brand.",
+    icon: "Globe",
+  },
+  {
+    title: "AI Agents & Automation",
+    description:
+      "Custom agents and skills embedded into your existing workflow — so the repetitive parts of production, publishing, and ops run themselves.",
     icon: "Bot",
   },
 ];
+
+// The business narrative for prospects: engagements start with content
+// and expand into owned systems — this section is what tells a cold
+// visitor how working with us actually unfolds.
+export const growthPath = {
+  eyebrow: "How engagements grow",
+  headline: [
+    { text: "START WITH CONTENT.", style: "fill" },
+    { text: "SCALE", style: "lime" },
+    { text: "INTO SYSTEMS.", style: "outline" },
+  ] as HeadlineSegment[],
+  steps: [
+    {
+      step: "01",
+      title: "Content",
+      description:
+        "Most clients start here: a consistent pipeline of edits, motion graphics, and design that makes the brand impossible to ignore.",
+    },
+    {
+      step: "02",
+      title: "Brand & Web",
+      description:
+        "Then we harden what works into assets you own — identity systems, templates, and a website built to convert the audience your content earns.",
+    },
+    {
+      step: "03",
+      title: "AI & Automation",
+      description:
+        "Finally we wire AI agents and custom skills into your workflow, so publishing, repurposing, and ops scale without headcount.",
+    },
+  ],
+};
 
 export const about = {
   eyebrow: "Who we are",
@@ -107,13 +150,13 @@ export const about = {
     { text: "MEETS", style: "lime" },
     { text: "OBSESSION.", style: "outline" },
   ] as HeadlineSegment[],
-  body: "We're a small team of editors and designers who obsess over the first three seconds, the cut nobody notices, and the thumbnail that earns the click. One team for everything your content needs to look like it matters.",
+  body: "We're a small team of editors, designers, and engineers who obsess over the first three seconds, the cut nobody notices, and the workflow that saves you ten hours a week. One team for everything your brand needs to look — and run — like it matters.",
   checklist: [
     "Platform-native editing for YouTube, Reels, Shorts & TikTok",
     "Fast, predictable turnarounds — most edits back within days",
-    "Design systems for thumbnails, templates & brand consistency",
+    "Websites, apps & AI agents built by the same team that runs your content",
   ],
-  tools: ["Premiere Pro", "After Effects", "DaVinci Resolve", "Photoshop", "Figma"],
+  tools: ["Premiere Pro", "After Effects", "DaVinci Resolve", "Figma", "Next.js", "Claude"],
 };
 
 // The statement section replaces the template's testimonial slot with a
@@ -122,8 +165,9 @@ export const statement: HeadlineSegment[] = [
   { text: "WE", style: "fill" },
   { text: "ARE", style: "fill" },
   { text: "EDITORS,", style: "lime" },
-  { text: "DESIGNERS,", style: "outline" },
-  { text: "AND", style: "fill" },
+  { text: "DESIGNERS,", style: "fill" },
+  { text: "BUILDERS", style: "outline" },
+  { text: "&", style: "fill" },
   { text: "STORYTELLERS", style: "lime" },
 ];
 
@@ -142,7 +186,7 @@ export const process = [
     step: "01",
     title: "Brief",
     description:
-      "We dig into your channel, brand, and audience — what you need, what's working, and what the content has to do.",
+      "We dig into your brand, channel, or product — what you need, what's working, and what the work has to do.",
   },
   {
     step: "02",
@@ -172,6 +216,6 @@ export const contact = {
     { text: "PEOPLE ACTUALLY WATCH.", style: "lime" },
   ] as HeadlineSegment[],
   description:
-    "Tell us what you're working on — a channel, a campaign, a rebrand, or a one-off edit.",
+    "Tell us what you're working on — a channel, a campaign, a rebrand, a website, or a workflow you want automated.",
   email: brand.email,
 };

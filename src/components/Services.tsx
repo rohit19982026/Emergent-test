@@ -1,12 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, Bot, Clapperboard, Film, Image, Palette, Smartphone } from "lucide-react";
+import { ArrowUpRight, Bot, Clapperboard, Film, Globe, Palette, Smartphone } from "lucide-react";
 import { services } from "@/lib/content";
 import { easing, duration, stagger } from "@/lib/motionTokens";
 import SectionHeading from "./ui/SectionHeading";
 
-const icons = { Film, Clapperboard, Palette, Image, Smartphone, Bot };
+const icons = { Film, Clapperboard, Palette, Smartphone, Globe, Bot };
 
 export default function Services() {
   return (
@@ -15,9 +15,9 @@ export default function Services() {
         <SectionHeading
           eyebrow="What we do"
           segments={[
-            { text: "DESIGNED TO KEEP", style: "fill" },
-            { text: "PEOPLE", style: "lime" },
-            { text: "WATCHING.", style: "outline" },
+            { text: "ONE TEAM.", style: "fill" },
+            { text: "EVERY", style: "lime" },
+            { text: "CREATIVE PROBLEM.", style: "outline" },
           ]}
         />
 

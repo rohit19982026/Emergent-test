@@ -2,6 +2,7 @@ import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Marquee from "@/components/ui/Marquee";
 import Services from "@/components/Services";
+import GrowthPath from "@/components/GrowthPath";
 import About from "@/components/About";
 import Statement from "@/components/Statement";
 import Portfolio from "@/components/Portfolio";
@@ -19,6 +20,7 @@ export default function Home() {
         <Hero />
         <Marquee items={marqueeItems} tilt />
         <Services />
+        <GrowthPath />
         <About />
         <Statement />
         <Portfolio />
