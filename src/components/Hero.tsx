@@ -82,12 +82,16 @@ export default function Hero() {
       {/* The source's usable region (bars cropped) is exactly 3:2, so an
           aspect-[3/2] box + object-cover shows ~the whole camera and
           exploded spread at natural size. Mobile/tablet: plain flow block
-          directly below the text, full width. Desktop: absolutely
-          positioned center-right at 68% width; the left edge feather-fades
-          parts into the identical blue instead of slicing them. */}
+          directly below the text, full width, with a top-edge feather so
+          the flat CSS background dissolves into the video instead of
+          meeting it at a hard line (browsers render <video> through a
+          slightly different color pipeline than CSS, so even a near-exact
+          color match shows a seam at a hard edge). Desktop: absolutely
+          positioned center-right at 68% width; same feather technique on
+          the left edge instead of the top. */}
       <div
         aria-hidden
-        className="relative aspect-[3/2] overflow-hidden lg:absolute lg:right-0 lg:top-1/2 lg:w-[68%] lg:max-w-[1100px] lg:-translate-y-1/2 lg:[mask-image:linear-gradient(to_right,transparent,black_10%)]"
+        className="relative aspect-[3/2] overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_12%)] lg:absolute lg:right-0 lg:top-1/2 lg:w-[68%] lg:max-w-[1100px] lg:-translate-y-1/2 lg:[mask-image:linear-gradient(to_right,transparent,black_10%)]"
       >
         <motion.div
           initial={{ opacity: 0 }}
@@ -115,13 +119,13 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Same-hue scrim: exact --blue with falling alpha, so overlap zones
-          calm down without the gradient ever reading as an overlay shape.
-          Mobile only needs the lower band (CTAs sit just above the camera);
-          desktop only the left text column. */}
+      {/* Same-hue scrim over the desktop text column, where the headline
+          overlaps the camera's left edge. Mobile/tablet don't need this —
+          text and camera no longer overlap there (v4), so no scrim base
+          class, only lg:. */}
       <div
         aria-hidden
-        className="absolute inset-0 bg-[linear-gradient(180deg,rgba(13,34,238,0)_55%,rgba(13,34,238,0.35)_100%)] lg:bg-[linear-gradient(90deg,rgba(13,34,238,0.7)_0%,rgba(13,34,238,0.25)_45%,rgba(13,34,238,0)_62%)]"
+        className="absolute inset-0 lg:bg-[linear-gradient(90deg,rgba(13,34,238,0.7)_0%,rgba(13,34,238,0.25)_45%,rgba(13,34,238,0)_62%)]"
       />
     </section>
   );
