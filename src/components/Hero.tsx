@@ -87,17 +87,22 @@ export default function Hero() {
           meeting it at a hard line (browsers render <video> through a
           slightly different color pipeline than CSS, so even a near-exact
           color match shows a seam at a hard edge). Desktop: absolutely
-          positioned center-right at 68% width; same feather technique on
-          the left edge instead of the top. */}
+          positioned center-right at 68% width, vertically centered — which
+          exposes a top AND bottom edge against the flat blue, not just the
+          left. Two nested single-axis masks (not mask-composite, which
+          Safari support poorly) fade all three: this outer box fades
+          top+bottom in one 4-stop gradient, the inner wrapper below fades
+          left. Right edge stays hard — it's flush to the viewport, not
+          seamed against anything. */}
       <div
         aria-hidden
-        className="relative aspect-[3/2] overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_12%)] lg:absolute lg:right-0 lg:top-1/2 lg:w-[68%] lg:max-w-[1100px] lg:-translate-y-1/2 lg:[mask-image:linear-gradient(to_right,transparent,black_10%)]"
+        className="relative aspect-[3/2] overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_12%)] lg:absolute lg:right-0 lg:top-1/2 lg:w-[68%] lg:max-w-[1100px] lg:-translate-y-1/2 lg:[mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]"
       >
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: duration.slow, ease: easing.framer }}
-          className="h-full w-full"
+          className="h-full w-full lg:[mask-image:linear-gradient(to_right,transparent,black_10%)]"
         >
           <video
             src="/photos/hero-camera.mp4"
