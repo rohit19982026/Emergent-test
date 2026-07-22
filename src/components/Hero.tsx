@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { hero, heroServices } from "@/lib/content";
+import { hero } from "@/lib/content";
 import { easing, duration } from "@/lib/motionTokens";
 import Button from "./ui/Button";
 import Star from "./ui/Star";
@@ -20,11 +20,11 @@ export default function Hero() {
           aspect-[3/2] wrapper + object-cover shows ~the whole camera and
           exploded spread at natural size. Mobile: full-width band anchored
           to the section bottom, text stays above on clean blue. Desktop:
-          center-right at 62% width; the left edge feather-fades parts into
+          center-right at 68% width; the left edge feather-fades parts into
           the identical blue instead of slicing them at an invisible line. */}
       <div
         aria-hidden
-        className="absolute inset-x-0 bottom-0 aspect-[3/2] overflow-hidden lg:inset-x-auto lg:bottom-auto lg:right-0 lg:top-1/2 lg:w-[62%] lg:max-w-[1000px] lg:-translate-y-1/2 lg:[mask-image:linear-gradient(to_right,transparent,black_10%)]"
+        className="absolute inset-x-0 bottom-0 aspect-[3/2] overflow-hidden lg:inset-x-auto lg:bottom-auto lg:right-0 lg:top-1/2 lg:w-[68%] lg:max-w-[1100px] lg:-translate-y-1/2 lg:[mask-image:linear-gradient(to_right,transparent,black_10%)]"
       >
         <motion.div
           initial={{ opacity: 0 }}
@@ -61,23 +61,10 @@ export default function Hero() {
         className="absolute inset-0 bg-[linear-gradient(180deg,rgba(13,34,238,0)_55%,rgba(13,34,238,0.35)_100%)] lg:bg-[linear-gradient(90deg,rgba(13,34,238,0.7)_0%,rgba(13,34,238,0.25)_45%,rgba(13,34,238,0)_62%)]"
       />
 
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 gap-10 px-6 pb-16 pt-12 lg:grid-cols-[auto_1fr] lg:gap-12 lg:pb-24 lg:pt-20">
-        {/* Service index — the whole offer at a glance. 2×2 on mobile
-            (bottom), vertical rail on desktop (left). Numbers deliberately
-            live only in the bottom StatsBand, not here. */}
-        <ul className="order-3 grid grid-cols-2 gap-x-6 gap-y-4 border-t-2 border-white/20 pt-8 lg:order-1 lg:grid-cols-1 lg:content-start lg:gap-5 lg:border-r-2 lg:border-t-0 lg:pr-10 lg:pt-2">
-          {heroServices.map((label) => (
-            <li key={label} className="flex items-start gap-2.5">
-              <Star className="mt-1 h-3.5 w-3.5 shrink-0 text-lime" />
-              <span className="font-grotesk text-sm font-bold uppercase leading-tight tracking-[0.08em] text-white/90 lg:text-base">
-                {label}
-              </span>
-            </li>
-          ))}
-        </ul>
-
-        {/* Headline block — type sits over the drifting camera parts */}
-        <div className="order-1 lg:order-2">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-16 pt-12 lg:pb-24 lg:pt-20">
+        {/* Headline block — left-anchored, capped width so the camera keeps
+            open room to its right; type sits over the drifting camera parts */}
+        <div className="lg:max-w-2xl">
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}

@@ -34,16 +34,6 @@ export const hero = {
   secondaryCta: { label: "Email us", href: `mailto:${brand.email}` },
 };
 
-// Hero left rail: the whole offer at a glance, so a cold visitor knows
-// every service line within seconds of landing. Numbers live only in the
-// bottom StatsBand.
-export const heroServices = [
-  "Video Editing & Motion",
-  "Logos, Posters & Brand",
-  "Websites & Apps",
-  "AI Agents & Automation",
-];
-
 // CONFIRM BEFORE LAUNCH — these numbers are conservative drafts, not
 // verified figures. Correct them here (one line each) before promoting
 // the site anywhere.
