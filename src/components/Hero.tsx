@@ -6,61 +6,19 @@ import { easing, duration } from "@/lib/motionTokens";
 import Button from "./ui/Button";
 import Star from "./ui/Star";
 
-// The camera showreel is the hero's background, not a placed media panel:
-// it fills the whole section behind the type, so its only edges are the
-// section's own boundaries. The section bg is the exact blue of the video
-// interior (--blue), so wherever object-fit crops, video meets CSS
-// invisibly. scale(1.18) keeps the source's 100px letterbox bars (and the
-// bottom-right watermark) outside the visible area at every aspect ratio —
-// object-cover only crops harder as the viewport gets narrower.
+// The camera showreel is the hero's background, not a placed media panel.
+// Desktop centers a short text block in a full-viewport section with the
+// camera absolutely positioned behind it. Mobile/tablet can't reuse that:
+// centering a short block in min-h-100svh leaves a large empty gap above
+// it, so below lg the section is a plain top-to-bottom flow instead —
+// text, then the camera band directly beneath it, section height just
+// follows the content.
 export default function Hero() {
   return (
-    <section id="top" className="relative flex min-h-[100svh] items-center overflow-hidden bg-blue">
-      {/* The source's usable region (bars cropped) is exactly 3:2, so an
-          aspect-[3/2] wrapper + object-cover shows ~the whole camera and
-          exploded spread at natural size. Mobile: full-width band anchored
-          to the section bottom, text stays above on clean blue. Desktop:
-          center-right at 68% width; the left edge feather-fades parts into
-          the identical blue instead of slicing them at an invisible line. */}
-      <div
-        aria-hidden
-        className="absolute inset-x-0 bottom-0 aspect-[3/2] overflow-hidden lg:inset-x-auto lg:bottom-auto lg:right-0 lg:top-1/2 lg:w-[68%] lg:max-w-[1100px] lg:-translate-y-1/2 lg:[mask-image:linear-gradient(to_right,transparent,black_10%)]"
-      >
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: duration.slow, ease: easing.framer }}
-          className="h-full w-full"
-        >
-          <video
-            src="/photos/hero-camera.mp4"
-            poster="/photos/hero-camera-poster.jpg"
-            className="h-full w-full scale-[1.03] object-cover motion-reduce:hidden"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-          />
-          {/* Reduced motion: hold the assembled-camera still instead of playing */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/photos/hero-camera-poster.jpg"
-            alt=""
-            className="hidden h-full w-full scale-[1.03] object-cover motion-reduce:block"
-          />
-        </motion.div>
-      </div>
-
-      {/* Same-hue scrim: exact --blue with falling alpha, so overlap zones
-          calm down without the gradient ever reading as an overlay shape.
-          Mobile only needs the lower band (CTAs/stats sit over the camera);
-          desktop only the left text column. */}
-      <div
-        aria-hidden
-        className="absolute inset-0 bg-[linear-gradient(180deg,rgba(13,34,238,0)_55%,rgba(13,34,238,0.35)_100%)] lg:bg-[linear-gradient(90deg,rgba(13,34,238,0.7)_0%,rgba(13,34,238,0.25)_45%,rgba(13,34,238,0)_62%)]"
-      />
-
+    <section
+      id="top"
+      className="relative overflow-hidden bg-blue lg:flex lg:min-h-[100svh] lg:items-center"
+    >
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-16 pt-12 lg:pb-24 lg:pt-20">
         {/* Headline block — left-anchored, capped width so the camera keeps
             open room to its right; type sits over the drifting camera parts */}
@@ -120,6 +78,51 @@ export default function Hero() {
           </motion.div>
         </div>
       </div>
+
+      {/* The source's usable region (bars cropped) is exactly 3:2, so an
+          aspect-[3/2] box + object-cover shows ~the whole camera and
+          exploded spread at natural size. Mobile/tablet: plain flow block
+          directly below the text, full width. Desktop: absolutely
+          positioned center-right at 68% width; the left edge feather-fades
+          parts into the identical blue instead of slicing them. */}
+      <div
+        aria-hidden
+        className="relative aspect-[3/2] overflow-hidden lg:absolute lg:right-0 lg:top-1/2 lg:w-[68%] lg:max-w-[1100px] lg:-translate-y-1/2 lg:[mask-image:linear-gradient(to_right,transparent,black_10%)]"
+      >
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: duration.slow, ease: easing.framer }}
+          className="h-full w-full"
+        >
+          <video
+            src="/photos/hero-camera.mp4"
+            poster="/photos/hero-camera-poster.jpg"
+            className="h-full w-full scale-[1.03] object-cover motion-reduce:hidden"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+          />
+          {/* Reduced motion: hold the assembled-camera still instead of playing */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/photos/hero-camera-poster.jpg"
+            alt=""
+            className="hidden h-full w-full scale-[1.03] object-cover motion-reduce:block"
+          />
+        </motion.div>
+      </div>
+
+      {/* Same-hue scrim: exact --blue with falling alpha, so overlap zones
+          calm down without the gradient ever reading as an overlay shape.
+          Mobile only needs the lower band (CTAs sit just above the camera);
+          desktop only the left text column. */}
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-[linear-gradient(180deg,rgba(13,34,238,0)_55%,rgba(13,34,238,0.35)_100%)] lg:bg-[linear-gradient(90deg,rgba(13,34,238,0.7)_0%,rgba(13,34,238,0.25)_45%,rgba(13,34,238,0)_62%)]"
+      />
     </section>
   );
 }
